@@ -1722,3 +1722,158 @@ a:hover.back-to-top {
 .purchase-section--center {
     text-align: center;
 }
+
+
+
+
+
+/************************************/
+/*   Auth صفحات: login / register   */
+/************************************/
+
+.form-container {
+    direction: rtl;
+    text-align: right;
+    max-width: 520px;
+    margin: 7rem auto 3rem; /* زیر navbar */
+    padding: 2rem 1.75rem;
+    background: #ffffff;
+    border: 1px solid #e5e8ef;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+}
+
+.form-container h2 {
+    margin-bottom: 1.25rem;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    color: #252c38;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1rem;
+}
+
+/* label ها */
+.auth-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #252c38;
+    font-size: 0.95rem;
+}
+
+/* input های فرم جنگو */
+.auth-form input,
+.auth-form textarea,
+.auth-form select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid #d0d5e2;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #252c38;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+/* focus */
+.auth-form input:focus,
+.auth-form textarea:focus,
+.auth-form select:focus {
+    border-color: #594cda;
+    box-shadow: 0 0 0 4px rgba(89, 76, 218, 0.12);
+}
+
+/* خطاهای non_field_errors */
+.auth-form .errorlist,
+.auth-form .errorlist li {
+    margin: 0.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: #b42318;
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+}
+
+/* دکمه */
+.auth-btn {
+    width: 100%;
+    border: 1px solid #594cda;
+    background: #594cda;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.25rem;
+}
+
+.auth-btn:hover {
+    background: transparent;
+    color: #594cda;
+}
+
+/* لینک پایین */
+.form-note {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #6b747b;
+}
+
+.form-note a {
+    color: #594cda;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.form-note a:hover {
+    text-decoration: underline;
+}
+
+/* پیام‌ها */
+.messages {
+    margin-bottom: 1rem;
+}
+
+.custom-alert {
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid transparent;
+    font-weight: 600;
+}
+
+.custom-alert.alert-success {
+    background: #ecfdf3;
+    border-color: #abefc6;
+    color: #067647;
+}
+
+.custom-alert.alert-error {
+    background: #fef3f2;
+    border-color: #fecdca;
+    color: #b42318;
+}
+
+.custom-alert.alert-warning {
+    background: #fffaeb;
+    border-color: #fedf89;
+    color: #b54708;
+}
+
+.custom-alert.alert-info {
+    background: #eff8ff;
+    border-color: #b2ddff;
+    color: #175cd3;
+}
+
+/* ریسپانسیو */
+@media (max-width: 640px) {
+    .form-container {
+        margin-top: 6rem;
+        padding: 1.5rem 1.25rem;
+        border-radius: 14px;
+    }
+}
