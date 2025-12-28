@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}درباره پلتفرم سلامت{% endblock %}
+
+{% block content %}
+<div class="about-page bg-gray" dir="rtl">
+
+    <!-- Hero -->
+<header class="about-header clean">
+    <!-- <p class="about-kicker">درباره ما</p> -->
+    <h1 class="about-title">درباره <span>Health WebPlatform</span></h1>
+    <p class="about-intro">
+        <strong>Health WebPlatform</strong> یک سامانه‌ی یکپارچه‌ی هوشمند برای مدیریت سلامت،
+        پرونده الکترونیک، مدل‌های هوش مصنوعی و غربالگری‌های استاندارد است.
+    </p>
+</header>
+
+
+    <!-- Sections -->
+    <div class="about-layout">
+
+        <!-- Mission -->
+        <section class="about-section">
+            <div class="about-card about-card--primary">
+                <h2>ماموریت ما</h2>
+                <p>
+                    توانمندسازی بیماران و پزشکان برای تصمیم‌گیری دقیق‌تر و سریع‌تر بر اساس داده‌ها،
+                    در کنار حفظ کامل حریم خصوصی.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="about-section">
+            <div class="about-card">
+                <h2>چه ارائه می‌دهیم</h2>
+                <ul class="about-list">
+                    <li><strong>EMR خصوصی:</strong> مدیریت مدارک، نسخه‌ها و تصاویر پزشکی.</li>
+                    <li><strong>مدل‌های هوش مصنوعی:</strong> اجرای مدل‌ها با گزارش استاندارد.</li>
+                    <li><strong>غربالگری‌ها:</strong> فرم‌های بالینی با امتیازدهی خودکار.</li>
+                    <li><strong>RAG:</strong> پرسش و پاسخ بر اساس مدارک آپلود شده.</li>
+                    <li><strong>CPP:</strong> گزارش بیمار قابل اشتراک‌گذاری.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Privacy -->
+        <section class="about-section">
+            <div class="about-card">
+                <h2>حریم خصوصی و امنیت</h2>
+                <p>
+                    داده‌های سلامت شما فقط متعلق به شماست. سیستم بر پایه کنترل دسترسی،
+                    فایل‌والیدیشن، رمزگذاری و لینک‌های زمان‌دار طراحی شده است.
+                </p>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="about-section">
+            <div class="about-card">
+                <h2>تیم ما</h2>
+                <p>این پلتفرم توسط تیمی از توسعه‌دهندگان و پژوهشگران هوش مصنوعی ساخته شده است.</p>
+
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-icon"><i class="fas fa-user-md"></i></div>
+                        <h3>متین عالی‌شانی</h3>
+                        <p class="team-role">توسعه‌دهنده</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="about-section">
+            <div class="about-card about-card--primary-bottom about-card--cta">
+                <h2>ارتباط با ما</h2>
+                <p>برای همکاری یا دریافت دمو با ما در ارتباط باشید.</p>
+                <a class="btn-solid-reg" href="/contact/">صفحهٔ تماس</a>
+            </div>
+        </section>
+
+    </div>
+</div>
+{% endblock %}

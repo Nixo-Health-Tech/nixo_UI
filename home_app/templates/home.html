@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}خانه | Health WebPlatform{% endblock %}
+
+{% block content %}
+<main id="home" dir="rtl">
+
+    <!-- Header (برگرفته از Header قالب Pavo) -->
+    <header id="header" class="header py-28 text-center md:pt-36 lg:text-right xl:pt-44 xl:pb-32">
+        <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
+
+            <!-- متن سمت راست -->
+            <div class="mb-16 lg:mt-32 xl:mt-40 xl:ml-12 order-2 lg:order-1">
+                <h1 class="h1-large mb-5">مدیریت سلامت، ساده و خصوصی</h1>
+                <p class="p-large mb-8">
+                    پرونده الکترونیک سلامت (EMR) شخصی، مدل‌های هوش مصنوعی، غربالگری‌ها و چت‌بات آموزشی
+                    همگی در یک وب‌پلتفرم یکپارچه برای پزشکان و بیماران.
+                </p>
+
+                <div class="flex flex-col gap-4 items-stretch sm:flex-row sm:justify-end">
+                    <!-- <a class="btn-solid-lg w-full sm:w-auto text-center" href="/emr/patients/">
+                        مدیریت پرونده‌ها (EMR)
+                        
+                    </a> -->
+                    <a class="btn-solid-lg secondary w-full sm:w-auto text-center" href="/purchase/">
+                        مشاهده طرح‌ها و خرید
+                    </a>
+                </div>
+            </div>
+
+            <!-- تصویر سمت چپ -->
+            <div class="xl:text-left order-1 lg:order-2">
+                <img class="inline" src="{% static 'img/header-smartphone.png' %}" alt="Health WebPlatform" />
+            </div>
+        </div>
+    </header>
+    <!-- end of header -->
+
+
+    <!-- Quick Actions (شروع سریع) -->
+    <section id="quick-actions" class="basic-2 py-16">
+        <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
+            <div class="lg:col-span-5 mb-10 lg:mb-0">
+                <h2 class="mb-6">شروع سریع</h2>
+                <p class="mb-4">
+                    برای هر بیمار یا کاربر، می‌توانید در چند کلیک پرونده بسازید، مدل‌های هوش مصنوعی را اجرا کنید،
+                    غربالگری‌ها را انجام دهید و از چت‌بات آموزشی استفاده کنید.
+                </p>
+            </div>
+
+            <div class="lg:col-span-7">
+                <div class="grid gap-6 md:grid-cols-2">
+                    <!-- EMR -->
+                    <a href="/emr/patients/" class="no-underline">
+                        <div class="p-6 bg-white rounded-xl shadow-lg h-full">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-notes-medical text-xl ml-2"></i>
+                                <h3 class="h5 mb-0">پرونده‌های EMR</h3>
+                            </div>
+                            <p class="mb-0">
+                                ثبت و مدیریت مدارک، آزمایش‌ها و گزارش‌های هر بیمار در یک پرونده‌ی منظم.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Chatbot -->
+                    <a href="/chat/" class="no-underline">
+                        <div class="p-6 bg-white rounded-xl shadow-lg h-full">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-robot text-xl ml-2"></i>
+                                <h3 class="h5 mb-0">چت‌بات سلامت</h3>
+                            </div>
+                            <p class="mb-0">
+                                پرسش و پاسخ آموزشی مبتنی بر شواهد برای کمک به بیماران در درک بهتر وضعیت سلامت.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- AI Models -->
+                    <a href="/models/" class="no-underline">
+                        <div class="p-6 bg-white rounded-xl shadow-lg h-full">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-brain text-xl ml-2"></i>
+                                <h3 class="h5 mb-0">مدل‌های هوش مصنوعی</h3>
+                            </div>
+                            <p class="mb-0">
+                                اجرای مدل‌های تشخیصی مانند تحلیل عکس قفسه سینه و سایر مدل‌ها به ازای هر کیس.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Purchase -->
+                    <a href="/purchase/" class="no-underline">
+                        <div class="p-6 bg-white rounded-xl shadow-lg h-full">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-credit-card text-xl ml-2"></i>
+                                <h3 class="h5 mb-0">طرح‌ها و خرید</h3>
+                            </div>
+                            <p class="mb-0">
+                                انتخاب طرح مناسب بر اساس تعداد کیس‌ها، تعداد گزارش‌ها و دسترسی به چت‌بات ماهانه.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of quick actions -->
+
+
+    <!-- Features (بر اساس بخش cards-1 در Pavo) -->
+    <section id="features" class="cards-1">
+        <div class="container px-4 sm:px-8 xl:px-4">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'img/features-icon-1.svg' %}" alt="EMR" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">EMR خصوصی و امن</h5>
+                    <p class="mb-4">
+                        ذخیره‌سازی ساختارمند مدارک، آزمایش‌ها و گزارش‌ها با تمرکز روی محرمانگی و کنترل کامل توسط پزشک.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'img/features-icon-2.svg' %}" alt="AI" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">مدل‌های تشخیصی قابل توسعه</h5>
+                    <p class="mb-4">
+                        امکان افزودن مدل‌های جدید هوش مصنوعی و قیمت‌گذاری بر اساس هر اجرا برای مدیریت ساده هزینه‌ها.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'img/features-icon-3.svg' %}" alt="Screening" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">غربالگری‌های هدفمند</h5>
+                    <p class="mb-4">
+                        مثال: غربالگری سرطان پستان و سایر غربالگری‌ها با پرداخت به ازای هر پرونده و خروجی گزارش‌شده.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'img/features-icon-4.svg' %}" alt="Reports" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">گزارش‌ها و خروجی‌های ساختارمند</h5>
+                    <p class="mb-4">
+                        تولید CPP چاپی و بسته‌ی بیمار در قالب PDF/HTML برای ارجاع، مستندسازی و ارتباط با بیمار.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'img/features-icon-5.svg' %}" alt="Chatbot" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">چت‌بات آموزشی ماهانه</h5>
+                    <p class="mb-4">
+                        دسترسی اشتراکی به چت‌بات آموزش محور برای بیماران، با محدودیت‌های قابل تنظیم بر اساس طرح.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'img/features-icon-6.svg' %}" alt="Scalable" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">مقیاس‌پذیر برای کلینیک و پلتفرم</h5>
+                    <p class="mb-4">
+                        طراحی شده برای شروع از یک مطب کوچک و رشد تا یک وب‌پلتفرم سلامت با چندین مدل و صدها بیمار.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of features -->
+
+
+    <!-- CTA نهایی (مشابه بخش download/conclusion در Pavo) -->
+    <section id="cta" class="basic-5 py-16">
+        <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-2">
+            <div class="mb-16 lg:mb-0">
+                <img src="{% static 'img/conclusion-smartphone.png' %}" alt="Health WebPlatform" />
+            </div>
+            <div class="lg:mt-24 xl:mt-44 xl:ml-12 text-right">
+                <p class="mb-9 text-gray-800 text-2xl leading-9">
+                    Health WebPlatform به شما کمک می‌کند پرونده‌ها، مدل‌های هوش مصنوعی،
+                    غربالگری‌ها و آموزش بیمار را در یک سیستم منسجم مدیریت کنید.
+                    امروز شروع کنید و برای هر بیمار، سابقه و تصمیم‌گیری بالینی بهتری بسازید.
+                </p>
+                <a class="btn-solid-lg" href="/purchase/">شروع استفاده از پلتفرم</a>
+            </div>
+        </div>
+    </section>
+    <!-- end of cta -->
+
+</main>
+{% endblock %}

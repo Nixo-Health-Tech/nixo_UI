@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}مدل‌های هوش مصنوعی{% endblock %}
+{% block content %}
+<h1>مدل‌های هوش مصنوعی</h1>
+<p>یک ابزار انتخاب کنید. برای CXR، می‌توانید با پارامتر ?patient=&lt;id&gt; بیمار را از قبل تعیین کنید.</p>
+<ul>
+  {% for t in tools %}
+    <li>
+      <strong>{{ t.name }}</strong>
+      {% if t.credit_cost %} — هزینه: {{ t.credit_cost }} اعتبار{% endif %}
+      <div><a href="{% url 'ai_models:run_create' t.slug %}">ایجاد اجرای جدید</a></div>
+    </li>
+  {% empty %}
+    <li>ابزاری فعال نیست.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

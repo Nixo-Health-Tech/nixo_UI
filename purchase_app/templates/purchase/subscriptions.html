@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}اشتراک‌های من{% endblock %}
+{% block content %}
+
+<div class="purchase-page">
+    <div class="purchase-layout">
+
+        <section class="purchase-section">
+            <h1>اشتراک‌های من</h1>
+
+            <table class="purchase-table">
+              <tr>
+                  <th>نام</th>
+                  <th>وضعیت</th>
+                  <th>پایان دوره</th>
+                  <th></th>
+              </tr>
+              {% for s in subs %}
+                <tr>
+                  <td>{{ s.price.product.name }}</td>
+                  <td>{{ s.status }}</td>
+                  <td>{{ s.current_period_end }}</td>
+                  <td>
+                    {% if s.status == "active" %}
+                      <form method="post" action="{% url 'purchase:cancel_subscription' s.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="purchase-table-button">لغو در پایان دوره</button>
+                      </form>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                    <td colspan="4">اشتراکی ندارید.</td>
+                </tr>
+              {% endfor %}
+            </table>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base_emr.html" %}
+{% block title %}مدارک من{% endblock %}
+{% block emr_content %}
+<h1>مدارک من</h1>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">افزودن</button>
+</form>
+
+<table>
+  <thead><tr><th>عنوان</th><th>فایل</th><th>تاریخ</th></tr></thead>
+  <tbody>
+    {% for d in documents %}
+      <tr>
+        <td>{{ d.title|default:"—" }}</td>
+        <td>
+          {% if d.file %}<a href="{{ d.file.url }}" target="_blank">دانلود</a>{% else %}—{% endif %}
+        </td>
+        <td>{{ d.created_at|date:"Y-m-d H:i"|default:"—" }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="3">مدرکی ثبت نشده است.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{% url 'emr:my_dashboard' %}">بازگشت</a></p>
+{% endblock %}

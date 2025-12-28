@@ -1,0 +1,92 @@
+{% comment %}Patient Packet: cover + CPP + attachments list. Style later for PDF.{% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Patient Packet — {{ patient.full_name }}</title>
+</head>
+<body>
+  <header>
+    <h1>Patient Packet</h1>
+    <p>Generated: {{ now }}</p>
+  </header>
+
+  <section>
+    <h2>Patient</h2>
+    <p><strong>Name:</strong> {{ patient.full_name }}</p>
+    <p><strong>Date of Birth:</strong> {{ patient.dob }}</p>
+    <p><strong>Sex:</strong> {{ patient.sex }}</p>
+    <p><strong>Contact:</strong> {{ patient.phone }} | {{ patient.email }}</p>
+    <p><strong>Address:</strong> {{ patient.address }}</p>
+  </section>
+
+  <section>
+    <h2>Active Problems</h2>
+    <ul>
+      {% for c in problems %}
+        <li>{{ c.description }}{% if c.onset %} (since {{ c.onset }}){% endif %}</li>
+      {% empty %}<li>None recorded.</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Medications</h2>
+    <ul>
+      {% for m in meds %}
+        <li>{{ m.medication.name }}{% if m.dose %} — {{ m.dose }}{% endif %}{% if m.frequency %} {{ m.frequency }}{% endif %}</li>
+      {% empty %}<li>None recorded.</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Allergies</h2>
+    <ul>
+      {% for a in allergies %}
+        <li>{{ a.substance }}{% if a.severity %} ({{ a.severity }}){% endif %}</li>
+      {% empty %}<li>No known allergies recorded.</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Immunizations</h2>
+    <ul>
+      {% for imm in immunizations %}
+        <li>{{ imm.date }} — {{ imm.vaccine }}</li>
+      {% empty %}<li>No immunizations recorded.</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Recent Vitals</h2>
+    <ul>
+      {% for v in vitals %}
+        <li>{{ v.datetime|date:"Y-m-d" }} —
+          {% if v.height_cm %}Ht {{ v.height_cm }} cm; {% endif %}
+          {% if v.weight_kg %}Wt {{ v.weight_kg }} kg; {% endif %}
+          {% if v.systolic and v.diastolic %}BP {{ v.systolic }}/{{ v.diastolic }}; {% endif %}
+          {% if v.pulse %}Pulse {{ v.pulse }}; {% endif %}
+          {% if v.spo2 %}SpO₂ {{ v.spo2 }}%{% endif %}
+        </li>
+      {% empty %}<li>No vitals recorded.</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Recent Labs</h2>
+    <ul>
+      {% for o in recent_observations %}
+        <li>{{ o.datetime|date:"Y-m-d" }} — {{ o.name }}: {{ o.value }} {{ o.unit }}</li>
+      {% empty %}<li>No labs available.</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Attachments (not embedded)</h2>
+    <ul>
+      {% for d in documents %}
+        <li>{{ d.uploaded_at|date:"Y-m-d" }} — {{ d.title }} ({{ d.mime }}) — {{ request.build_absolute_uri(d.file.url) }}</li>
+      {% empty %}<li>No documents.</li>{% endfor %}
+    </ul>
+  </section>
+</body>
+</html>

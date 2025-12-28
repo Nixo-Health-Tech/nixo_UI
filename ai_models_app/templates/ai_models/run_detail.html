@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}جزئیات اجرا #{{ run.id }}{% endblock %}
+{% block content %}
+<h1>اجرای #{{ run.id }} — {{ run.tool.name }}</h1>
+<p>وضعیت: {{ run.status }}</p>
+
+{% if run.image %}
+  <h2>ورودی</h2>
+  <img src="{{ run.image.url }}" alt="ورودی" style="max-width:100%;height:auto;">
+{% endif %}
+
+
+{% if run.result.narrative_llm %}
+  <h2>گزارش </h2>
+  <pre>{{ run.result.narrative_llm }}</pre>
+{% endif %}
+
+<p>
+  {% if run.status != "processing" %}
+    <a href="{% url 'ai_models:run_execute' run.id %}">اجرای مدل</a>
+  {% endif %}
+</p>
+<p><a href="{% url 'ai_models:catalog' %}">بازگشت</a></p>
+{% endblock %}

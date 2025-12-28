@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}اجرای {{ tool.name }}{% endblock %}
+{% block content %}
+<h1>اجرای {{ tool.name }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <p>Payload (JSON):</p>
+  <textarea name="payload" rows="12" style="width:100%;">{}</textarea>
+  <p><button type="submit">Run</button></p>
+</form>
+<p><a href="{% url 'tools:detail' tool.slug %}">بازگشت</a></p>
+{% endblock %}

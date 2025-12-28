@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}طرح‌ها و خرید{% endblock %}
+{% load purchase_tags %}
+{% block content %}
+
+<div class="purchase-page">
+    <header class="purchase-header">
+        <h1>طرح‌ها و خرید</h1>
+    </header>
+
+    <div class="purchase-layout">
+
+        <section class="purchase-section">
+            <h2>سرویس‌های پرداخت به ازای استفاده (با اعتبار)</h2>
+            <p>برای اجرای مدل‌های هوش مصنوعی و غربالگری‌ها از اعتبار کیف پول استفاده می‌شود.</p>
+            <ul class="purchase-list">
+                <li><strong>تحلیل عکس قفسه سینه (Chest X-Ray):</strong> هر مورد = {{ products|get_credit_cost:"cxr" }} اعتبار</li>
+                <li><strong>غربالگری سرطان پستان:</strong> هر پرونده = {{ products|get_credit_cost:"breast_cancer" }} اعتبار</li>
+            </ul>
+        </section>
+
+        <section class="purchase-section">
+            <h2>بسته‌های اعتبار</h2>
+            <ul class="purchase-list">
+                {% for p in products %}
+                  {% if p.type == "credits" %}
+                    {% for price in p.prices.all %}
+                      <li>
+                          {{ p.name }} — {{ price.credits_included }} اعتبار — {{ price.unit_amount }} {{ price.currency }}
+                          <a href="{% url 'purchase:checkout' price.id %}" class="purchase-link">خرید</a>
+                      </li>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="purchase-section purchase-section--last">
+            <h2>اشتراک‌های ماهانه</h2>
+            <ul class="purchase-list">
+                {% for p in products %}
+                  {% if p.type == "subscription" %}
+                    {% for price in p.prices.all %}
+                      <li>
+                          {{ p.name }} — {{ price.unit_amount }} {{ price.currency }} / {{ price.interval }}
+                          <a href="{% url 'purchase:checkout' price.id %}" class="purchase-link">اشتراک</a>
+                      </li>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+            </ul>
+            <p><a href="{% url 'purchase:subscriptions' %}" class="purchase-link">مدیریت اشتراک‌ها</a></p>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}پرداخت موفق{% endblock %}
+{% block content %}
+
+<div class="purchase-page">
+    <div class="purchase-layout">
+
+        <section class="purchase-section purchase-section--center">
+            <h1>پرداخت موفق</h1>
+            <p>سفارش شماره {{ order.id }} ثبت شد.</p>
+            <p>
+                <a href="{% url 'purchase:plans' %}" class="purchase-link">
+                    بازگشت به طرح‌ها
+                </a>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

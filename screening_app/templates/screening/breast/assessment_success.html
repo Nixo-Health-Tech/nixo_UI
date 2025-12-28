@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Success{% endblock %}
+{% block content %}
+
+<h1>Assessment saved successfully.</h1>
+<p><a href="{% url 'breast:assessment_list' %}">View all assessments</a></p>
+
+{% endblock %}

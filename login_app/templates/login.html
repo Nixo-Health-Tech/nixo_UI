@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="custom-alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <h2>ورود به حساب کاربری</h2>
+  <form method="post" class="auth-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}">شماره تلفن:</label>
+      {{ form.username }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.password.id_for_label }}">رمز عبور:</label>
+      {{ form.password }}
+    </div>
+    <button type="submit" class="auth-btn">ورود</button>
+  </form>
+
+  <p class="form-note">هنوز ثبت‌نام نکرده‌اید؟
+    <a href="{% url 'login:register' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">ثبت‌نام</a>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,211 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+<link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.2/Vazirmatn-font-face.css">
+<style>
+    body {
+        font-family: "Vazirmatn", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'fa' }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+
+    {# SEO ساده - اگر خواستی بعداً دقیقش کن #}
+    <meta name="description" content="پلتفرم سلامت نسل آینده برای مدیریت EMR، مدل‌های هوش مصنوعی، غربالگری و چت‌بات آموزشی" />
+    <meta name="author" content="Nixo Health" />
+
+    {# OG tags اگر لازم شد مقداردهی کن #}
+    <meta property="og:site_name" content="پلتفرم سلامت نسل آینده" />
+    <meta property="og:title" content="پلتفرم سلامت نسل آینده" />
+    <meta property="og:description" content="مدیریت یکپارچه پرونده سلامت و مدل‌های هوش مصنوعی" />
+
+    <title>{% block title %}پلتفرم سلامت نسل آینده{% endblock %}</title>
+
+    {# فونت + استایل‌های Pavo #}
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <link rel="icon" href="{% static 'images/favicon.png' %}" />
+
+    {# بلاک‌های اضافی پروژه خودت #}
+    {% block head_css %}{% endblock %}
+    {% block head_extra %}{% endblock %}
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+    {# URLها مثل قبل #}
+    {% url 'home:home' as home_url %}
+    {% url 'emr:entry' as emr_url %}
+    {% url 'ai_models:catalog' as models_url %}
+    {% url 'chatbot:chat' as chat_url %}
+    {% url 'breast:dashboard' as screening_url %}
+    {% url 'purchase:plans' as purchase_url %}
+    {% url 'contact:contact' as contact_url %}
+    {% url 'about:about' as about_url %}
+    {% url 'login:login' as login_url %}
+    {% url 'login:register' as register_url %}
+    {% url 'login:logout' as logout_url %}
+
+    <!-- Navigation (از Pavo، ولی وصل شده به URLهای تو) -->
+   <nav class="navbar navbar-pavo fixed-top">
+    <div class="container sm:px-4 md:px-8 flex flex-wrap items-center justify-between md:flex-nowrap">
+      <!-- Logo -->
+            <a class="inline-block  py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline"
+               href="{{ home_url|default:'/' }}">
+                <img src="{% static 'img/logo.svg' %}" alt="پلتفرم سلامت نسل آینده" class="h-8 md:h-8" />
+            </a>
+   <!-- Login / User -->
+                <span class="block lg:ml-3.5 mt-3 lg:mt-0">
+                    {% if request.user.is_authenticated %}
+                        <span class="text-sm text-gray-100 ml-2">
+                            سلام، {{ request.user.full_name|default:request.user.phone_number }}
+                        </span>
+                        <a class="btn-solid-sm" href="{{ logout_url|default:'/login/logout/' }}">خروج</a>
+                    {% else %}
+                        {% with current=request.get_full_path|default:request.path %}
+                            <a class="btn-solid-sm mr-2"
+                               href="{{ login_url|default:'/login/signin/' }}?next={{ current|urlencode }}">
+                                ورود
+                            </a>
+                            <a class="btn-outline-sm"
+                               href="{{ register_url|default:'/login/register/' }}?next={{ current|urlencode }}">
+                                ثبت‌نام
+                            </a>
+                        {% endwith %}
+                    {% endif %}
+                </span>
+      
+
+            <!-- Toggler -->
+            <button class="background-transparent rounded text-xl leading-none hover:no-underline focus:no-underline lg:hidden lg:text-gray-400"
+                    type="button" data-toggle="offcanvas" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon inline-block w-8 h-8 align-middle"></span>
+            </button>
+
+            <!-- Menu -->
+            <div class="navbar-collapse offcanvas-collapse lg:flex lg:flex-grow lg:items-center" id="navbarsExampleDefault">
+                <ul class="menu-rtl pl-0 mt-3 mb-2  flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
+
+                    <li>
+                        <a class="nav-link page-scroll" href="{{ home_url|default:'/' }}">خانه</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ emr_url|default:'/emr/' }}">پرونده الکترونیک</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ models_url|default:'/models/' }}">مدل‌های هوش مصنوعی</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ chat_url|default:'/chat/' }}">چت‌بات</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ screening_url|default:'/screening/breast/' }}">غربالگری</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ purchase_url|default:'/purchase/' }}">خرید پلن</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ contact_url|default:'/contact/' }}">ارتباط با ما</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ about_url|default:'/about/' }}">درباره ما</a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+                         
+    </nav>
+
+    <!-- end of navigation -->
+
+    {# پیام‌ها (flash messages) #}
+    {% if messages %}
+    <section aria-label="Notifications" class="mt-24">
+        <div class="container px-4 sm:px-8">
+            <ul id="messages" class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+                {% for message in messages %}
+                    <li class="mb-1">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {% endif %}
+
+    {# Breadcrumb اختیاری #}
+    <nav aria-label="Breadcrumb" class="mt-4">
+        {% block breadcrumb %}{% endblock %}
+    </nav>
+
+    <!-- Main content -->
+    <main id="main" role="main" class="pt-24">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer (سبک Pavo ولی متن خودت) -->
+    <div class="footer">
+        <div class="container px-4 sm:px-8">
+            <div class="flex flex-col items-center justify-between text-center lg:flex-row">
+                <div class="mb-4 lg:mb-0">
+                    <p class="font-semibold text-gray-200">
+                        پلتفرم سلامت نسل آینده
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        مدیریت یکپارچه پرونده سلامت، مدل‌های هوش مصنوعی و آموزش بیمار
+                    </p>
+                </div>
+
+                <div class="social-container flex space-x-2">
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-telegram fa-stack-1x text-white"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-instagram fa-stack-1x text-white"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container px-4 sm:px-8">
+            <p class="pb-2 text-center text-sm text-gray-400">
+                &copy; <span id="year"></span> پلتفرم سلامت نسل آینده
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts Pavo -->
+    {% block body_scripts %}
+    <script>
+        (function(){var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
+    </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

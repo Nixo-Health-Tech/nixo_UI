@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}تأیید خرید{% endblock %}
+{% block content %}
+
+<div class="purchase-page">
+    <div class="purchase-layout">
+
+        <section class="purchase-section">
+            <h1>تأیید خرید</h1>
+            <p><strong>آیتم:</strong> {{ price.product.name }}</p>
+            <p><strong>نوع:</strong> {{ price.kind }}</p>
+            <p>
+                <strong>مبلغ:</strong>
+                {{ price.unit_amount }} {{ price.currency }}{% if price.kind == "recurring" %} / {{ price.interval }}{% endif %}
+            </p>
+            <form method="post" class="purchase-form">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn-solid-reg">پرداخت (آزمایشی)</button>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

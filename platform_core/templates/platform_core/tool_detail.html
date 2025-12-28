@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ tool.name }}{% endblock %}
+{% block content %}
+<h1>{{ tool.name }}</h1>
+<p>شناسه: {{ tool.slug }}</p>
+<p>نوع: {{ tool.type }}</p>
+{% if tool.credit_cost %}<p>هزینه هر اجرا: {{ tool.credit_cost }} اعتبار</p>{% endif %}
+{% if tool.meta %}<h2>تنظیمات</h2><pre>{{ tool.meta|safe }}</pre>{% endif %}
+<p>
+  <a href="{% url 'tools:run' tool.slug %}">اجرا</a> |
+  <a href="{% url 'tools:list' %}">بازگشت</a>
+</p>
+{% endblock %}

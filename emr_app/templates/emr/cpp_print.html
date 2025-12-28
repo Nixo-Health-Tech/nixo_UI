@@ -1,0 +1,96 @@
+{% extends "emr/base_emr.html" %}
+{% block page_title %}CPP Print{% endblock %}
+{% block emr_content %}
+<!-- Printable Cumulative Patient Profile -->
+<header>
+  <h1>Cumulative Patient Profile (CPP)</h1>
+  <p>Printed: {{ now|default:None }}</p>
+</header>
+
+<section aria-labelledby="patient-info">
+  <h2 id="patient-info">Patient</h2>
+  <p><strong>Name:</strong> {{ patient.full_name }}</p>
+  <p><strong>Date of Birth:</strong> {{ patient.dob }}</p>
+  <p><strong>Sex:</strong> {{ patient.sex }}</p>
+  <p><strong>Contact:</strong> {{ patient.phone }} | {{ patient.email }}</p>
+  <p><strong>Address:</strong> {{ patient.address }}</p>
+</section>
+
+<section aria-labelledby="ongoing-concerns">
+  <h2 id="ongoing-concerns">Ongoing Concerns</h2>
+  <ul>
+    {% for c in problems %}
+      <li>{{ c.description }}{% if c.onset %} (since {{ c.onset }}){% endif %}</li>
+    {% empty %}<li>None recorded.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="medications">
+  <h2 id="medications">Medications</h2>
+  <ul>
+    {% for m in meds %}
+      <li>{{ m.medication.name }}{% if m.dose %} — {{ m.dose }}{% endif %}{% if m.frequency %} {{ m.frequency }}{% endif %}</li>
+    {% empty %}<li>None recorded.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="allergies">
+  <h2 id="allergies">Allergies & Intolerances</h2>
+  <ul>
+    {% for a in allergies %}
+      <li>{{ a.substance }}{% if a.severity %} ({{ a.severity }}){% endif %}</li>
+    {% empty %}<li>No known allergies recorded.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="immunizations">
+  <h2 id="immunizations">Immunizations</h2>
+  <ul>
+    {% for imm in immunizations %}
+      <li>{{ imm.date }} — {{ imm.vaccine }}{% if imm.lot_number %} (lot {{ imm.lot_number }}){% endif %}</li>
+    {% empty %}<li>No immunizations recorded.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="vitals">
+  <h2 id="vitals">Recent Vitals</h2>
+  <ul>
+    {% for v in vitals %}
+      <li>{{ v.datetime|date:"Y-m-d" }} —
+        {% if v.height_cm %}Ht {{ v.height_cm }} cm; {% endif %}
+        {% if v.weight_kg %}Wt {{ v.weight_kg }} kg; {% endif %}
+        {% if v.systolic and v.diastolic %}BP {{ v.systolic }}/{{ v.diastolic }}; {% endif %}
+        {% if v.pulse %}Pulse {{ v.pulse }}; {% endif %}
+        {% if v.spo2 %}SpO₂ {{ v.spo2 }}%{% endif %}
+      </li>
+    {% empty %}<li>No vitals recorded.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="recent-labs">
+  <h2 id="recent-labs">Recent Labs</h2>
+  <ul>
+    {% for o in recent_observations %}
+      <li>{{ o.datetime|date:"Y-m-d" }} — {{ o.name }}: {{ o.value }} {{ o.unit }}</li>
+    {% empty %}<li>No labs available.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="reports">
+  <h2 id="reports">Recent Reports</h2>
+  <ul>
+    {% for r in reports %}
+      <li>{{ r.datetime|date:"Y-m-d" }} — {{ r.title }}{% if r.conclusion %}: {{ r.conclusion|truncatechars:120 }}{% endif %}</li>
+    {% empty %}<li>No reports available.</li>{% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="documents">
+  <h2 id="documents">Documents</h2>
+  <ul>
+    {% for d in documents %}
+      <li>{{ d.uploaded_at|date:"Y-m-d" }} — {{ d.title }} ({{ d.mime }})</li>
+    {% empty %}<li>No documents uploaded.</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

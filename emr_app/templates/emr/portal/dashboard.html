@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}پرتال من{% endblock %}
+{% block content %}
+<h1>پرتال سلامت من</h1>
+<p>سلام {{ request.user.full_name|default:request.user.phone_number }}!</p>
+
+<p>
+  <a href="{% url 'emr:my_profile' %}">ویرایش اطلاعات پایه</a> |
+  <a href="{% url 'emr:my_documents' %}">مدارک من</a> |
+  <a href="{% url 'emr:my_observations' %}">ثبت علائم حیاتی / مشاهدات</a>
+</p>
+
+{% if recent_docs %}
+<h2>آخرین مدارک</h2>
+<ul>
+  {% for d in recent_docs %}
+    <li>{{ d.title|default:"بدون عنوان" }} — {{ d.created_at|date:"Y-m-d" }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if recent_observations %}
+<h2>آخرین مشاهدات</h2>
+<ul>
+  {% for o in recent_observations %}
+    <li>{{ o.code }}: {{ o.value }} {{ o.unit }} — {{ o.datetime|date:"Y-m-d H:i" }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

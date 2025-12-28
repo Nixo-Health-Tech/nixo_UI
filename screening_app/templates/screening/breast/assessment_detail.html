@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Assessment Detail{% endblock %}
+{% block content %}
+
+<h1>Assessment #{{ assessment.id }}</h1>
+<p>Date: {{ assessment.created_at|date:"Y-m-d H:i" }}</p>
+{% if risk_analysis %}
+  <h2>Risk Factors</h2>
+  <pre>{{ risk_analysis|safe }}</pre>
+{% endif %}
+{% if recommendations %}
+  <h2>Recommendations</h2>
+  <ul>{% for r in recommendations %}<li>{{ r }}</li>{% endfor %}</ul>
+{% endif %}
+<p>
+  <a href="{% url 'breast:assessment_update' assessment.id %}">Edit</a> |
+  <a href="{% url 'breast:assessment_list' %}">All assessments</a>
+</p>
+
+{% endblock %}

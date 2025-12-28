@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Breast Cancer Assessment{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Risk Assessment Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/breast_cancer_form_css.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Breast Cancer Risk Assessment Form</h1>
+            <p>Created by Dr. Seyed Mahdi Mirtajaddini (Specialist in Internal Medicine)</p>
+        </header>
+
+        <form method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="form-errors">{{ form.errors }}</div>
+            {% endif %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Show/hide conditional fields
+        document.addEventListener('DOMContentLoaded', function() {
+            // Alcohol amount visibility
+            document.getElementById('alcohol').addEventListener('change', function() {
+                const alcoholGroup = document.getElementById('alcohol_amount_group');
+                alcoholGroup.style.display = this.value === 'y' ? 'block' : 'none';
+            });
+
+            // Hormone therapy type visibility
+            document.getElementById('hormone_therapy').addEventListener('change', function() {
+                const typeGroup = document.getElementById('hormone_therapy_type_group');
+                typeGroup.style.display = this.value === 'y' ? 'block' : 'none';
+            });
+
+            // Biopsy report visibility
+            document.getElementById('breast_biopsy').addEventListener('change', function() {
+                const reportGroup = document.getElementById('biopsy_report_group');
+                reportGroup.style.display = this.value === 'y' ? 'block' : 'none';
+            });
+
+            // Family history count visibility
+            document.getElementById('family_history_female').addEventListener('change', function() {
+                const countGroup = document.getElementById('family_history_count_group');
+                countGroup.style.display = this.value === 'y' ? 'block' : 'none';
+            });
+
+            // Genetic test result visibility
+            document.getElementById('genetic_test').addEventListener('change', function() {
+                const resultGroup = document.getElementById('genetic_test_result_group');
+                resultGroup.style.display = this.value === 'y' ? 'block' : 'none';
+            });
+
+            // Smoking timing visibility
+            document.getElementById('smoking').addEventListener('change', function() {
+                const timingGroup = document.getElementById('smoking_timing_group');
+                timingGroup.style.display = this.value === 'y' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

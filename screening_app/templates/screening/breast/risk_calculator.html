@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Risk Calculator{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/breast_cancer_form_css.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Breast Cancer Risk Calculator</h1>
+        </header>
+
+        <form method="post" action="">
+            {% csrf_token %}
+
+            <section>
+                <h2>Calculate Your Risk</h2>
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Family history of breast cancer?</label>
+                    <div>
+                        <input type="radio" id="family_history_yes" name="family_history" value="y" required>
+                        <label for="family_history_yes">Yes</label>
+
+                        <input type="radio" id="family_history_no" name="family_history" value="n">
+                        <label for="family_history_no">No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Known BRCA1/BRCA2 mutation?</label>
+                    <div>
+                        <input type="radio" id="genetic_mutation_yes" name="genetic_mutation" value="y" required>
+                        <label for="genetic_mutation_yes">Yes</label>
+
+                        <input type="radio" id="genetic_mutation_no" name="genetic_mutation" value="n">
+                        <label for="genetic_mutation_no">No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Personal history of breast cancer?</label>
+                    <div>
+                        <input type="radio" id="personal_history_yes" name="personal_history" value="y" required>
+                        <label for="personal_history_yes">Yes</label>
+
+                        <input type="radio" id="personal_history_no" name="personal_history" value="n">
+                        <label for="personal_history_no">No</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">Calculate Risk</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </section>
+        </form>
+
+        <div class="form-actions">
+            <a href="{% url 'dashboard' %}"><button type="button">Back to Dashboard</button></a>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

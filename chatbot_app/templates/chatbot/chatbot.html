@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}دستیار سلامت{% endblock %}
+{% block content %}
+<article aria-labelledby="chat-title">
+  <header>
+    <h1 id="chat-title">دستیار سلامت</h1>
+    <p>پاسخ‌ها صرفاً آموزشی هستند و جایگزین نظر پزشک نیستند.</p>
+  </header>
+  <section aria-label="تنظیمات گفتگو">
+    <form id="chat-config" onsubmit="return false;">
+      <label for="model">مدل:</label>
+      <select id="model" name="model" aria-label="انتخاب مدل">
+        <option value="">پیش‌فرض</option>
+      </select>
+      <label for="use_rag">منبع دانش:</label>
+      <select id="use_rag" name="use_rag" aria-label="انتخاب منبع دانش">
+        <option value="on">مستندات من/عمومی</option>
+        <option value="off">بدون جستجو</option>
+      </select>
+    </form>
+  </section>
+  <section id="chat-window" aria-live="polite" aria-relevant="additions" role="log">
+    <div id="messages"></div>
+  </section>
+  <section aria-label="ارسال پیام">
+    <form id="chat-form" onsubmit="return false;">
+      <label class="sr-only" for="message">پیام</label>
+      <textarea id="message" rows="3" placeholder="سؤال خود را بنویسید…"></textarea>
+      <button id="send">ارسال</button>
+      <button id="stop" type="button">توقف</button>
+    </form>
+  </section>
+</article>
+<script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}لغو اشتراک{% endblock %}
+{% block content %}
+
+<div class="purchase-page">
+    <div class="purchase-layout">
+
+        <section class="purchase-section purchase-section--center">
+            <h1>لغو اشتراک</h1>
+            <p>اشتراک <strong>{{ sub.price.product.name }}</strong> در پایان دوره جاری لغو خواهد شد.</p>
+            <form method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn-solid-reg">تأیید</button>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

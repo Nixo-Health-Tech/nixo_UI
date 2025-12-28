@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}ابزارها{% endblock %}
+{% block content %}
+<h1>ابزارها</h1>
+<ul>
+  {% for t in tools %}
+    <li>
+      <strong>{{ t.name }}</strong> ({{ t.slug }})
+      {% if t.credit_cost %} — هزینه: {{ t.credit_cost }} اعتبار{% endif %}
+      <div>
+        <a href="{% url 'tools:detail' t.slug %}">جزئیات</a> |
+        <a href="{% url 'tools:run' t.slug %}">اجرا</a>
+      </div>
+    </li>
+  {% empty %}
+    <li>ابزار فعالی ثبت نشده است.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

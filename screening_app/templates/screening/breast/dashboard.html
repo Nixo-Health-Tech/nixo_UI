@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h1>Breast Cancer Screening Dashboard</h1>
+<p><a href="{% url 'breast:assessment_create' %}">New assessment</a> | 
+   <a href="{% url 'breast:assessment_list' %}">All assessments</a> | 
+   <a href="{% url 'breast:risk_calculator' %}">Risk calculator</a> |
+   <a href="{% url 'breast:statistics' %}">Statistics</a></p>
+
+{% endblock %}

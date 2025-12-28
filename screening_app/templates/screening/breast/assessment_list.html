@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Assessments{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Risk Assessment List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/breast_cancer_form_css.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>All Breast Cancer Risk Assessments</h1>
+            <p>Total Assessments: {{ total_assessments }}</p>
+        </header>
+
+        <section>
+            <form class="search-filter" method="get">
+                <input type="text" name="search" class="search-box" placeholder="Search by age or ethnicity...">
+                <input type="date" name="date_from">
+                <input type="date" name="date_to">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </section>
+
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Ethnicity</th>
+                        <th>BMI</th>
+                        <th>Family History</th>
+                        <th>Date Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assessment in assessments %}
+                    <tr>
+                        <td>{{ assessment.id }}</td>
+                        <td>{{ assessment.age }}</td>
+                        <td>{{ assessment.get_gender_display }}</td>
+                        <td>{{ assessment.get_ethnicity_display }}</td>
+                        <td>{{ assessment.bmi }}</td>
+                        <td>{{ assessment.get_family_history_female_display }}</td>
+                        <td>{{ assessment.created_at|date:"Y-m-d" }}</td>
+                        <td>
+                            <a href="{% url 'assessment_detail' assessment.id %}">View</a> | 
+                            <a href="{% url 'assessment_update' assessment.id %}">Edit</a> | 
+                            <a href="{% url 'assessment_delete' assessment.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="8">No assessments found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                {% if assessments.has_previous %}
+                    <a href="?page={{ assessments.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <span>Page {{ assessments.number }} of {{ assessments.paginator.num_pages }}</span>
+
+                {% if assessments.has_next %}
+                    <a href="?page={{ assessments.next_page_number }}">Next</a>
+                {% endif %}
+            </div>
+        </section>
+
+        <div class="form-actions">
+            <a href="{% url 'assessment_create' %}"><button type="button">New Assessment</button></a>
+            <a href="{% url 'dashboard' %}"><button type="button">Back to Dashboard</button></a>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

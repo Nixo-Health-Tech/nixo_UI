@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}اجرای #{{ exec.id }}{% endblock %}
+{% block content %}
+<h1>اجرای #{{ exec.id }}</h1>
+<p>ابزار: {{ exec.tool.name }} ({{ exec.tool.slug }})</p>
+<p>وضعیت: {{ exec.status }}</p>
+<p>شروع: {{ exec.started_at }} | پایان: {{ exec.finished_at }}</p>
+
+<h2>ورودی</h2>
+<pre>{{ exec.input_payload|safe }}</pre>
+
+{% if exec.error_message %}
+<h2>خطا</h2>
+<pre>{{ exec.error_message }}</pre>
+{% endif %}
+
+{% if exec.output_payload %}
+<h2>خروجی</h2>
+<pre>{{ exec.output_payload|safe }}</pre>
+{% endif %}
+
+<p><a href="{% url 'tools:list' %}">بازگشت به ابزارها</a></p>
+{% endblock %}
