@@ -1972,3 +1972,88 @@ a:hover.back-to-top {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+
+
+
+
+
+
+/* ============ Shared Page Layout (RTL) ============ */
+.page--rtl { direction: rtl; text-align: right; padding-top: 1rem; padding-bottom: 3rem; }
+.page-header { max-width: 880px; margin: 0 auto 1.75rem; }
+.page-kicker { color: #594cda; font-size: .9rem; font-weight: 700; margin-bottom: .35rem; }
+.page-title { margin-bottom: .7rem; }
+.page-intro { color: #6b747b; line-height: 1.85; }
+
+/* ============ Card System ============ */
+.card {
+  max-width: 880px;
+  margin: 0 auto 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e5e8ef;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.03);
+  padding: 1.25rem 1.25rem;
+}
+
+.card--soft { background: #f1f9fc; border-color: #dbe7ee; }
+.card--outline { background: #ffffff; }
+
+/* ============ Chat page ============ */
+.chat-config {
+  display: grid;
+  gap: 1rem;
+}
+
+.chat-config .field label {
+  display: block;
+  font-weight: 700;
+  color: #252c38;
+  margin-bottom: .35rem;
+}
+
+.chat-config select {
+  width: 100%;
+  height: 3.25rem;
+  border: 1px solid #d0d5e2;
+  border-radius: 25px;
+  padding: 0 .9rem;
+  background: #fff;
+  color: #6b747b;
+}
+
+.chat-window {
+  padding: 0;
+  overflow: hidden;
+}
+
+.chat-messages {
+  height: 420px;
+  overflow: auto;
+  padding: 1rem 1rem;
+  background: #ffffff;
+}
+
+/* پیام‌ها را chat.js اضافه می‌کند، اینجا فقط ظاهر ظرف را درست می‌کنیم */
+.chat-form textarea {
+  width: 100%;
+  border: 1px solid #d0d5e2;
+  border-radius: 14px;
+  padding: .9rem .9rem;
+  color: #252c38;
+  resize: vertical;
+  min-height: 90px;
+}
+
+.chat-actions {
+  display: flex;
+  gap: .75rem;
+  justify-content: flex-start;
+  margin-top: .9rem;
+}
+
+@media (min-width: 768px) {
+  .chat-config { grid-template-columns: 1fr 1fr; }
+}
