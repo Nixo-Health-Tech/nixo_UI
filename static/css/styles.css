@@ -909,6 +909,20 @@ input[type="checkbox"] {
     color: #252c38;
 }
 
+.footer p {
+    color: #2f3a45;       /* متن اصلی خوانا */
+}
+
+.footer p.text-sm {
+    color: #4b5563;       /* توضیح ثانویه */
+}
+
+/* عنوان فوتر */
+.footer .font-semibold {
+    color: #1f2937;       /* تیره‌تر برای تیتر */
+    font-weight: 600;
+}
+
 /*********************/
 /*     Copyright     */
 /*********************/
@@ -916,6 +930,14 @@ input[type="checkbox"] {
     padding-top: 1.5rem;
     background-color: #c5eaf9;
     text-align: center;
+}
+
+.copyright p {
+  
+   color: #2f3a45;      
+    font-weight: 500;
+    font-size: 0.85rem;
+
 }
 
 /******************************/
@@ -1875,5 +1897,78 @@ a:hover.back-to-top {
         margin-top: 6rem;
         padding: 1.5rem 1.25rem;
         border-radius: 14px;
+    }
+}
+
+
+/******************/
+
+/* ===== AI Models page ===== */
+.models-page {
+    direction: rtl;
+    text-align: right;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+}
+
+.models-title {
+    margin-bottom: 0.75rem;
+}
+
+.models-help {
+    max-width: 880px;
+    margin-bottom: 1.5rem;
+    line-height: 1.9;
+}
+
+.models-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.models-card {
+    background: #ffffff;
+    border: 1px solid #e5e8ef;
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03);
+}
+
+.models-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.models-name {
+    color: #252c38;
+    font-size: 1.05rem;
+}
+
+.models-cost {
+    color: #6b747b;
+    font-size: 0.9rem;
+}
+
+.models-action .btn-solid-reg {
+    margin: 0;
+}
+
+.models-empty {
+    padding: 1rem 0;
+    color: #6b747b;
+}
+
+/* دسکتاپ */
+@media (min-width: 1024px) {
+    .models-list {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
