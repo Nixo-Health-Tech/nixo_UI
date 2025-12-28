@@ -11286,3 +11286,11 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'assessment_create' not found
 [2025-12-28 14:13:10,223] WARNING django.server "GET /static/webfonts/fa-solid-900.ttf HTTP/1.1" 404 1889
 [2025-12-28 14:13:10,225] WARNING django.server "GET /static/webfonts/fa-brands-400.ttf HTTP/1.1" 404 1892
 [2025-12-28 14:13:11,396] WARNING django.server "GET /static/images/up-arrow.png HTTP/1.1" 404 1871
+[2025-12-28 14:14:13,123] INFO django.server "GET /login/signin/?next=/ HTTP/1.1" 200 8290
+[2025-12-28 14:14:13,157] INFO django.server "GET /static/css/styles.css HTTP/1.1" 304 0
+[2025-12-28 14:14:13,644] WARNING django.server "GET /static/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 1898
+[2025-12-28 14:14:13,644] WARNING django.server "GET /static/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 1895
+[2025-12-28 14:14:13,657] WARNING django.server "GET /static/webfonts/fa-brands-400.woff HTTP/1.1" 404 1895
+[2025-12-28 14:14:13,658] WARNING django.server "GET /static/webfonts/fa-solid-900.woff HTTP/1.1" 404 1892
+[2025-12-28 14:14:13,665] WARNING django.server "GET /static/webfonts/fa-solid-900.ttf HTTP/1.1" 404 1889
+[2025-12-28 14:14:13,665] WARNING django.server "GET /static/webfonts/fa-brands-400.ttf HTTP/1.1" 404 1892
